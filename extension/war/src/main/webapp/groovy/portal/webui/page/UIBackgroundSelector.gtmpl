@@ -1,0 +1,69 @@
+<%
+    import java.util.List;
+    import org.exoplatform.webos.services.desktop.DesktopBackground;
+    
+	def rcontext = _ctx.getRequestContext(); 
+	rcontext.getJavascriptManager().importJavascript('eXo.webui.UIHorizontalTabs'); 
+	rcontext.getJavascriptManager().importJavascript('eXo.portal.UIPortal'); 
+	
+	String onMouseOver = "eXo.webui.UIItemSelector.onOver(this, true)";
+	String onMouseOut = "eXo.webui.UIItemSelector.onOver(this, false)";
+    
+    List<DesktopBackground> desktopBackgrounds = uicomponent.getDesktopBackgrounds(rcontext);	
+%>
+<div class="UIChangeLanguageForm" id="<%=uicomponent.getId()%>">
+	<div class="UIFormTabPane">
+		<div class="UITabPane">
+		
+			<div class="UIBarStyle">
+				<div class="TitleBar">
+					<div class="LeftBar">
+						<div class="RightBar">
+							<div class="MiddleBar">
+								<span><%=_ctx.appRes("UIBackgroundSelector.title")%></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="TabPaneContent">
+				<div class="WorkingArea">	
+					<div class="HorizontalLayout">
+						<div class="UITabContentContainer">
+							<%uicomponent.renderChildren()%>						
+						</div>
+						
+		 				<div class="UIAction"> 
+							<table class="ActionContainer">
+								<tr>
+									<td>
+											<div onclick="<%=uicomponent.event("Upload");%>" class="ActionButton LightBlueStyle">
+											<div class="ButtonLeft">
+												<div class="ButtonRight">
+													<div class="ButtonMiddle">
+														<a href="#"><%=_ctx.appRes("UIBackgroundSelector.action.upload")%></a>
+													</div>
+												</div>
+											</div>
+											</div>
+											<div onclick="<%=uicomponent.event("Close");%>" class="ActionButton LightBlueStyle">
+											<div class="ButtonLeft">
+												<div class="ButtonRight">
+													<div class="ButtonMiddle">
+														<a href="javascript:void(0);"><%=_ctx.appRes("UIBackgroundSelector.action.close")%></a>
+													</div>
+												</div>
+											</div>
+											</div>
+									</td>
+								</tr>
+					 		</table>
+						</div>
+	
+					</div>
+				</div>
+			</div>	
+		</div>	
+	</div>
+</div>
